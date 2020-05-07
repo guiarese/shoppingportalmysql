@@ -1,13 +1,14 @@
-package br.com.shoppingportal.dto;
+package br.com.shoppingportal.dto.products;
 
 import java.math.BigDecimal;
 
-public class ProductsDTO {
+public class UpdateProductsDTO {
 	
 	private int idproducts;
 	private String name;
 	private int amount;
 	private BigDecimal price;
+	
 	
 	public int getIdproducts() {
 		return idproducts;
@@ -32,6 +33,6 @@ public class ProductsDTO {
 	}
 	public void setPrice(BigDecimal price) {
 		this.price = price;
-	}
+	}	
 
 }

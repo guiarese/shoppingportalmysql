@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.com.shoppingportal.dto.products.CreateProductsDTO;
+
 @Entity
 @Table(name = "products")
 public class Products {
@@ -45,6 +47,14 @@ public class Products {
 		this.price = price;
 	}
 	
+	public Products(){
+		
+	}
 	
+	public Products(CreateProductsDTO productsDTO){
+		this.name = productsDTO.getName();
+		this.amount = productsDTO.getAmount();
+		this.price = productsDTO.getPrice();
+	}
 
 }
