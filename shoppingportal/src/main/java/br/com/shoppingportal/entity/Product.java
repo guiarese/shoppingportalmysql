@@ -8,25 +8,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import br.com.shoppingportal.dto.products.CreateProductsDTO;
+import br.com.shoppingportal.dto.products.CreateProductDTO;
 
 @Entity
-@Table(name = "products")
-public class Products {
+@Table(name = "product")
+public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idproducts;
-	
+	private int idproduct;
 	private String name;
 	private int amount;
 	private BigDecimal price;
 	
-	public int getIdproducts() {
-		return idproducts;
+	public int getIdproduct() {
+		return idproduct;
 	}
-	public void setIdproducts(int idproducts) {
-		this.idproducts = idproducts;
+	public void setIdproducts(int idproduct) {
+		this.idproduct = idproduct;
 	}
 	public String getName() {
 		return name;
@@ -47,11 +46,11 @@ public class Products {
 		this.price = price;
 	}
 	
-	public Products(){
+	public Product(){
 		
 	}
 	
-	public Products(CreateProductsDTO productsDTO){
+	public Product(CreateProductDTO productsDTO){
 		this.name = productsDTO.getName();
 		this.amount = productsDTO.getAmount();
 		this.price = productsDTO.getPrice();

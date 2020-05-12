@@ -2,20 +2,12 @@ package br.com.shoppingportal.dto.products;
 
 import java.math.BigDecimal;
 
-public class UpdateProductsDTO {
+public class CreateProductDTO {
 	
-	private int idproducts;
 	private String name;
 	private int amount;
 	private BigDecimal price;
 	
-	
-	public int getIdproducts() {
-		return idproducts;
-	}
-	public void setIdproducts(int idproducts) {
-		this.idproducts = idproducts;
-	}
 	public String getName() {
 		return name;
 	}

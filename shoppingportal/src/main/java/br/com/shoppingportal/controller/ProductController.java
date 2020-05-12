@@ -13,42 +13,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.shoppingportal.dto.products.CreateProductsDTO;
-import br.com.shoppingportal.dto.products.UpdateProductsDTO;
-import br.com.shoppingportal.entity.Products;
-import br.com.shoppingportal.service.ProductsService;
+import br.com.shoppingportal.dto.products.CreateProductDTO;
+import br.com.shoppingportal.dto.products.UpdateProductDTO;
+import br.com.shoppingportal.entity.Product;
+import br.com.shoppingportal.service.ProductService;
 
 @RestController
-@RequestMapping({"/products"})
-public class ProductsController {
+@RequestMapping({"/product"})
+public class ProductController {
 	
-	private ProductsService service;
+	private ProductService service;
 	
-	public ProductsController(ProductsService service) {
+	public ProductController(ProductService service) {
 		this.service = service;
 	}
 			
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public List<Products> findAll(){
+	public List<Product> findAll(){
 	   return service.findAll();
 	}
 	
 	@GetMapping("{idproducts}")
 	@ResponseStatus(HttpStatus.OK)
-	public Products findByID(@PathVariable int idproducts){
+	public Product findByID(@PathVariable int idproducts){
 		return service.findById(idproducts);
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Products create(@RequestBody CreateProductsDTO products) {
+	public Product create(@RequestBody CreateProductDTO products) {
 		return service.create(products);
 	}
 	
 	@PatchMapping
 	@ResponseStatus(HttpStatus.OK)
-	public Products update(@RequestBody UpdateProductsDTO products) {
+	public Product update(@RequestBody UpdateProductDTO products) {
 		return service.update(products);
 	}
 	
