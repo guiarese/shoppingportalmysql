@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.shoppingportal.dto.products.CreateProductDTO;
-import br.com.shoppingportal.dto.products.UpdateProductDTO;
+import br.com.shoppingportal.dto.product.CreateProductDTO;
+import br.com.shoppingportal.dto.product.UpdateProductDTO;
 import br.com.shoppingportal.entity.Product;
 import br.com.shoppingportal.repository.ProductRepository;
 import br.com.shoppingportal.service.ProductService;

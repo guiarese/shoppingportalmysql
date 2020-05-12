@@ -3,7 +3,11 @@ package br.com.shoppingportal.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import br.com.shoppingportal.dto.client.CreateClientDTO;
 import br.com.shoppingportal.entity.Client;
 import br.com.shoppingportal.repository.ClientRepository;
 import br.com.shoppingportal.service.ClientService;
@@ -22,19 +26,19 @@ public class ClientServiceImpl implements ClientService {
 		return repository.findAll().stream().collect(Collectors.toList());
 	}
 
-	/*@Override
-	public Product create(CreateProductDTO productDTO) {
-		Product product = new Product(productDTO);
-		return repository.save(product);
+	@Override
+	public Client create(CreateClientDTO clientDTO) {
+		Client client = new Client(clientDTO);
+		return repository.save(client);
 	}
 
 	@Override
-	public Product findById(int idproduct) {
-		return repository.findById(idproduct)
+	public Client findById(int idclient) {
+		return repository.findById(idclient)
 						 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 
-	@Override
+	/*@Override
 	public void delete(int idproduct) {
 		Product product = findById(idproduct);
 		repository.delete(product);

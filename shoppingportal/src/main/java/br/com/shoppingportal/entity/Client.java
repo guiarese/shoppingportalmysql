@@ -1,12 +1,14 @@
 package br.com.shoppingportal.entity;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import br.com.shoppingportal.dto.client.CreateClientDTO;
 
 @Entity
 @Table(name = "client")
@@ -18,7 +20,7 @@ public class Client {
 	private String name;
 	private String cpf;
 	private String phonenumber;
-	private LocalDate birthdate;
+	private Date birthdate;
 	
 	public int getIdclient() {
 		return idclient;
@@ -44,15 +46,22 @@ public class Client {
 	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
-	public LocalDate getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
-	public void setBirthdate(LocalDate birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 	
 	public Client() {
 		
+	}
+	
+	public Client(CreateClientDTO createClientDTO) {
+		this.name = createClientDTO.getName();
+		this.cpf = createClientDTO.getCpf();
+		this.phonenumber = createClientDTO.getPhonenumber();
+		this.birthdate = createClientDTO.getBirthdate();
 	}
 
 }

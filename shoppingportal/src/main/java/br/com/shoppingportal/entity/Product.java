@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import br.com.shoppingportal.dto.products.CreateProductDTO;
+import br.com.shoppingportal.dto.product.CreateProductDTO;
 
 @Entity
 @Table(name = "product")

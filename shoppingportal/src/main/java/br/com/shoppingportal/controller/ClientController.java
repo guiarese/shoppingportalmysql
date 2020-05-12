@@ -4,10 +4,14 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.shoppingportal.dto.client.CreateClientDTO;
 import br.com.shoppingportal.entity.Client;
 import br.com.shoppingportal.service.ClientService;
 
@@ -27,19 +31,19 @@ public class ClientController {
 	   return service.findAll();
 	}
 	
-	/*@GetMapping("{idproducts}")
+	@GetMapping("{idclient}")
 	@ResponseStatus(HttpStatus.OK)
-	public Product findByID(@PathVariable int idproducts){
-		return service.findById(idproducts);
+	public Client findByID(@PathVariable int idclient){
+		return service.findById(idclient);
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Product create(@RequestBody CreateProductDTO products) {
-		return service.create(products);
+	public Client create(@RequestBody CreateClientDTO client) {
+		return service.create(client);
 	}
 	
-	@PatchMapping
+	/*@PatchMapping
 	@ResponseStatus(HttpStatus.OK)
 	public Product update(@RequestBody UpdateProductDTO products) {
 		return service.update(products);

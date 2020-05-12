@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.shoppingportal.dto.products.CreateProductDTO;
-import br.com.shoppingportal.dto.products.UpdateProductDTO;
+import br.com.shoppingportal.dto.product.CreateProductDTO;
+import br.com.shoppingportal.dto.product.UpdateProductDTO;
 import br.com.shoppingportal.entity.Product;
 import br.com.shoppingportal.service.ProductService;
 
@@ -34,28 +34,28 @@ public class ProductController {
 	   return service.findAll();
 	}
 	
-	@GetMapping("{idproducts}")
+	@GetMapping("{idproduct}")
 	@ResponseStatus(HttpStatus.OK)
-	public Product findByID(@PathVariable int idproducts){
-		return service.findById(idproducts);
+	public Product findByID(@PathVariable int idproduct){
+		return service.findById(idproduct);
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Product create(@RequestBody CreateProductDTO products) {
-		return service.create(products);
+	public Product create(@RequestBody CreateProductDTO product) {
+		return service.create(product);
 	}
 	
 	@PatchMapping
 	@ResponseStatus(HttpStatus.OK)
-	public Product update(@RequestBody UpdateProductDTO products) {
-		return service.update(products);
+	public Product update(@RequestBody UpdateProductDTO product) {
+		return service.update(product);
 	}
 	
-	@DeleteMapping("{idproducts}")
+	@DeleteMapping("{idproduct}")
 	@ResponseStatus(HttpStatus.OK)
-	public void delete(@PathVariable int idproducts) {
-		service.delete(idproducts);
+	public void delete(@PathVariable int idproduct) {
+		service.delete(idproduct);
 	}
 	
 }

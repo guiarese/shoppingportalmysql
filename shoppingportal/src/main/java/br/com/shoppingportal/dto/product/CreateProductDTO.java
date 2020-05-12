@@ -1,4 +1,4 @@
-package br.com.shoppingportal.dto.products;
+package br.com.shoppingportal.dto.product;
 
 import java.math.BigDecimal;
 
