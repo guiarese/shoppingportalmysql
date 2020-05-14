@@ -3,7 +3,9 @@ package br.com.shoppingportal.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.shoppingportal.dto.client.CreateClientDTO;
+import br.com.shoppingportal.dto.client.UpdateClientDTO;
 import br.com.shoppingportal.entity.Client;
 import br.com.shoppingportal.service.ClientService;
 
@@ -43,16 +46,16 @@ public class ClientController {
 		return service.create(client);
 	}
 	
-	/*@PatchMapping
+	@PatchMapping
 	@ResponseStatus(HttpStatus.OK)
-	public Product update(@RequestBody UpdateProductDTO products) {
-		return service.update(products);
+	public Client update(@RequestBody UpdateClientDTO client) {
+		return service.update(client);
 	}
 	
-	@DeleteMapping("{idproducts}")
+	@DeleteMapping("{idclient}")
 	@ResponseStatus(HttpStatus.OK)
-	public void delete(@PathVariable int idproducts) {
-		service.delete(idproducts);
+	public void delete(@PathVariable int idclient) {
+		service.delete(idclient);
 	}
-	*/
+	
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.com.shoppingportal.dto.client.CreateClientDTO;
+import br.com.shoppingportal.dto.client.UpdateClientDTO;
 import br.com.shoppingportal.entity.Client;
 import br.com.shoppingportal.repository.ClientRepository;
 import br.com.shoppingportal.service.ClientService;
@@ -38,21 +39,20 @@ public class ClientServiceImpl implements ClientService {
 						 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 
-	/*@Override
-	public void delete(int idproduct) {
-		Product product = findById(idproduct);
-		repository.delete(product);
-	}
-
 	@Override
-	public Product update(UpdateProductDTO productsDTO) {
-		Product product = findById(productsDTO.getIdproduct());
-		product.setName(productsDTO.getName());
-		product.setAmount(productsDTO.getAmount());
-		product.setPrice(productsDTO.getPrice());
-		return repository.save(product);
+	public void delete(int idclient) {
+		Client client = findById(idclient);
+		repository.delete(client);
 	}
-	*/
 	
-
+	@Override
+	public Client update(UpdateClientDTO clientDTO) {
+		Client client = findById(clientDTO.getIdclient());
+		client.setName(clientDTO.getName());
+		client.setCpf(clientDTO.getCpf());
+		client.setPhonenumber(clientDTO.getPhonenumber());
+		client.setBirthdate(clientDTO.getBirthdate());
+		return repository.save(client);
+	}
+	
 }
