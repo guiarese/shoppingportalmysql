@@ -7,8 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.shoppingportal.dto.product.CreateProductDTO;
-import br.com.shoppingportal.dto.product.UpdateProductDTO;
+import br.com.shoppingportal.dto.ProductDTO;
 import br.com.shoppingportal.entity.Product;
 import br.com.shoppingportal.repository.ProductRepository;
 import br.com.shoppingportal.service.ProductService;
@@ -28,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product create(CreateProductDTO productDTO) {
+	public Product create(ProductDTO productDTO) {
 		Product product = new Product(productDTO);
 		return repository.save(product);
 	}
@@ -46,8 +45,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product update(UpdateProductDTO productsDTO) {
-		Product product = findById(productsDTO.getIdproduct());
+	public Product update(Integer idproduct, ProductDTO productsDTO) {
+		Product product = findById(idproduct);
 		product.setName(productsDTO.getName());
 		product.setAmount(productsDTO.getAmount());
 		product.setPrice(productsDTO.getPrice());

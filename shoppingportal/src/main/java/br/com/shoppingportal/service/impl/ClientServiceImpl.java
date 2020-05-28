@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.shoppingportal.dto.client.CreateClientDTO;
-import br.com.shoppingportal.dto.client.UpdateClientDTO;
+import br.com.shoppingportal.dto.ClientDTO;
+import br.com.shoppingportal.entity.AddressClient;
 import br.com.shoppingportal.entity.Client;
 import br.com.shoppingportal.repository.AddressClientRepository;
 import br.com.shoppingportal.repository.ClientRepository;
@@ -29,17 +29,14 @@ public class ClientServiceImpl implements ClientService {
 		return repositoryClient.findAll().stream().collect(Collectors.toList());
 	}
 
-	/*@Override
-	public Client create(CreateClientDTO clientDTO) {
-		Client client = new Client(clientDTO);
-		return repositoryClient.save(client);
-	}*/
-	
 	@Override
-	public Client create(CreateClientDTO clientDTO) {
+	public Client create(ClientDTO clientDTO) {
 		Client client = new Client(clientDTO);
-		repositoryClient.save(client);
-		repositoryAddress.saveAll(clientDTO.getAddresses());
+		client = repositoryClient.save(client);
+		for(AddressClient a : client.getAddresses()) {
+			a.setClient(client);
+		}
+		repositoryAddress.saveAll(client.getAddresses());
 		return client;
 	}
 
@@ -52,17 +49,30 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public void delete(int idclient) {
 		Client client = findById(idclient);
+		repositoryAddress.deleteByClientIdclient(client.getIdclient());
 		repositoryClient.delete(client);
 	}
 	
 	@Override
-	public Client update(UpdateClientDTO clientDTO) {
-		Client client = findById(clientDTO.getIdclient());
+	public Client update(Integer idclient, ClientDTO clientDTO) {
+		
+		Client client = findById(idclient);
+		
+		repositoryAddress.deleteByClientIdclient(client.getIdclient());
+		
 		client.setName(clientDTO.getName());
 		client.setCpf(clientDTO.getCpf());
 		client.setPhonenumber(clientDTO.getPhonenumber());
 		client.setBirthdate(clientDTO.getBirthdate());
-		return repositoryClient.save(client);
+		repositoryClient.save(client);
+		
+		client.setAddresses(clientDTO.getAddresses());
+		for(AddressClient a : client.getAddresses()) {
+			a.setClient(client);
+		}
+		repositoryAddress.saveAll(client.getAddresses());
+		
+		return client;
 	}
 	
 }

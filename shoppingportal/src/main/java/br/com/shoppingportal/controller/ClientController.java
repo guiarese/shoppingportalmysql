@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.shoppingportal.dto.client.CreateClientDTO;
-import br.com.shoppingportal.dto.client.UpdateClientDTO;
+import br.com.shoppingportal.dto.ClientDTO;
 import br.com.shoppingportal.entity.Client;
 import br.com.shoppingportal.service.ClientService;
 
@@ -42,14 +41,14 @@ public class ClientController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Client create(@RequestBody CreateClientDTO client) {
-		return service.create(client);
+	public Client create(@RequestBody ClientDTO clientDTO) {
+		return service.create(clientDTO);
 	}
 	
-	@PutMapping
+	@PutMapping("{idclient}")
 	@ResponseStatus(HttpStatus.OK)
-	public Client update(@RequestBody UpdateClientDTO client) {
-		return service.update(client);
+	public Client update(@PathVariable Integer idclient, @RequestBody ClientDTO clientDTO) {
+		return service.update(idclient,clientDTO);
 	}
 	
 	@DeleteMapping("{idclient}")

@@ -1,21 +1,19 @@
-package br.com.shoppingportal.dto.client;
+package br.com.shoppingportal.dto;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-public class UpdateClientDTO {
+import br.com.shoppingportal.entity.AddressClient;
+
+public class ClientDTO {
 	
-	private int idclient;
 	private String name;
 	private String cpf;
 	private String phonenumber;
 	private Date birthdate;
+	private Set<AddressClient> addresses = new HashSet<>();
 	
-	public int getIdclient() {
-		return idclient;
-	}
-	public void setIdclient(int idclient) {
-		this.idclient = idclient;
-	}
 	public String getName() {
 		return name;
 	}
@@ -39,6 +37,12 @@ public class UpdateClientDTO {
 	}
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
+	}
+	public Set<AddressClient> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(Set<AddressClient> addresses) {
+		this.addresses = addresses;
 	}
 
 }

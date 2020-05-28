@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import br.com.shoppingportal.dto.client.CreateClientDTO;
+import br.com.shoppingportal.dto.ClientDTO;
 
 @Entity
 @Table(name = "client")
@@ -74,7 +74,7 @@ public class Client implements Serializable{
 	public Client() {
 		
 	}
-	public Client(CreateClientDTO createClientDTO) {
+	public Client(ClientDTO createClientDTO) {
 		this.name = createClientDTO.getName();
 		this.cpf = createClientDTO.getCpf();
 		this.phonenumber = createClientDTO.getPhonenumber();

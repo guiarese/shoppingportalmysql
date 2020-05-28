@@ -1,8 +1,8 @@
-package br.com.shoppingportal.dto.product;
+package br.com.shoppingportal.dto;
 
 import java.math.BigDecimal;
 
-public class CreateProductDTO {
+public class ProductDTO {
 	
 	private String name;
 	private int amount;

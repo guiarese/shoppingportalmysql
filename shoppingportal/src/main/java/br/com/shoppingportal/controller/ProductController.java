@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.shoppingportal.dto.product.CreateProductDTO;
-import br.com.shoppingportal.dto.product.UpdateProductDTO;
+import br.com.shoppingportal.dto.ProductDTO;
 import br.com.shoppingportal.entity.Product;
 import br.com.shoppingportal.service.ProductService;
 
@@ -42,14 +41,14 @@ public class ProductController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Product create(@RequestBody CreateProductDTO product) {
+	public Product create(@RequestBody ProductDTO product) {
 		return service.create(product);
 	}
 	
-	@PutMapping
+	@PutMapping("{idproduct}")
 	@ResponseStatus(HttpStatus.OK)
-	public Product update(@RequestBody UpdateProductDTO product) {
-		return service.update(product);
+	public Product update(@PathVariable Integer idproduct, @RequestBody ProductDTO product) {
+		return service.update(idproduct,product);
 	}
 	
 	@DeleteMapping("{idproduct}")
