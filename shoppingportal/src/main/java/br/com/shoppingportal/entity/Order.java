@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.shoppingportal.dto.OrderDTO;
 
@@ -29,6 +32,12 @@ public class Order implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idorder;
+	
+	@Transient
+	private int idclient;
+	
+	@Transient
+	private String name;
 	
 	@ManyToOne
     @JoinColumn(name = "idclient")
@@ -50,6 +59,7 @@ public class Order implements Serializable{
 	public void setIdorder(int idorder) {
 		this.idorder = idorder;
 	}
+	@JsonIgnore
 	public Client getClient() {
 		return client;
 	}
@@ -79,6 +89,12 @@ public class Order implements Serializable{
 	}
 	public void setProducts(Set<ProductOrder> products) {
 		this.products = products;
+	}
+	public int getIdclient() {
+		return client.getIdclient();
+	}
+	public String getName() {
+		return client.getName();
 	}
 	public Order() {
 		

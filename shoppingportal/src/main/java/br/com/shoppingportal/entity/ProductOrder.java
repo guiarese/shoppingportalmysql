@@ -26,6 +26,9 @@ public class ProductOrder implements Serializable {
 	@Transient
 	private int idproduct;
 	
+	@Transient
+	private String name;
+	
 	private int amount;
 	private BigDecimal value;
 
@@ -61,5 +64,9 @@ public class ProductOrder implements Serializable {
 	public void setValue(BigDecimal value) {
 		this.value = value;
 	}
+	public String getName() {
+		return id.getProduct().getName();
+	}
+	
 
 }
