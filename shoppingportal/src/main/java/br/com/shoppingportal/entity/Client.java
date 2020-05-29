@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import br.com.shoppingportal.dto.ClientDTO;
 
 @Entity
@@ -28,6 +30,7 @@ public class Client implements Serializable{
 	private int idclient;
 	
 	private String name;
+	@CPF
 	private String cpf;
 	private String phonenumber;
 	private Date birthdate;

@@ -20,6 +20,7 @@ import br.com.shoppingportal.entity.Product;
 import br.com.shoppingportal.entity.ProductOrder;
 import br.com.shoppingportal.repository.OrderRepository;
 import br.com.shoppingportal.repository.ProductOrderRepository;
+import br.com.shoppingportal.repository.ProductRepository;
 import br.com.shoppingportal.service.ClientService;
 import br.com.shoppingportal.service.OrderService;
 import br.com.shoppingportal.service.ProductService;
@@ -32,6 +33,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
 	private ProductOrderRepository repositoryProductOrder;
+	
+	@Autowired
+	private ProductRepository repositoryProduct;
 	
 	@Autowired
 	private ClientService clientService;
@@ -61,6 +65,10 @@ public class OrderServiceImpl implements OrderService {
 		Order order = new Order(orderDTO,client,addressClient);
 		
 		BigDecimal sumValues = new BigDecimal(0);
+		
+		if (orderDTO.getProducts().isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Ao menos um produto deve ser informado");
+		}
 
 		Set<ProductOrder> productsSet = new HashSet<>();
 		for(ProductOrderDTO x : orderDTO.getProducts()) {
@@ -71,6 +79,15 @@ public class OrderServiceImpl implements OrderService {
 			
 			Product product = new Product();
 			product = productService.findById(x.getIdproduct());
+			if (product.getAmount() < x.getAmount()) {
+				throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Quantidade solicitada maior que a quantidade do estoque");
+			}
+			if (product.getAmount() == 0) {
+				throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Produto com quantidade 0 em estoque");
+			}
+			if (x.getAmount() <= 0) {
+				throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Quantidade do produto deve ser maior do que zero");
+			}
 			productMake.setProduct(product);
 			
 			productMake.setAmount(x.getAmount());
@@ -90,6 +107,15 @@ public class OrderServiceImpl implements OrderService {
 		
 		repositoryOrder.save(order);
 		repositoryProductOrder.saveAll(productsSet);
+		
+		for (ProductOrder w : order.getProducts()) {
+			
+			Product product = new Product();
+			product = productService.findById(w.getIdproduct());
+			product.setAmount(product.getAmount() - w.getAmount());
+			repositoryProduct.save(product);
+			
+		}
 		
 		return order;
 	}

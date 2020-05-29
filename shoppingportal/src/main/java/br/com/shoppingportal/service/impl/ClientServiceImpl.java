@@ -31,13 +31,20 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public Client create(ClientDTO clientDTO) {
+		
 		Client client = new Client(clientDTO);
 		client = repositoryClient.save(client);
+		
+		if (client.getAddresses().isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Ao menos um endereço deve ser informado");
+		}
+		
 		for(AddressClient a : client.getAddresses()) {
 			a.setClient(client);
 		}
 		repositoryAddress.saveAll(client.getAddresses());
 		return client;
+		
 	}
 
 	@Override
