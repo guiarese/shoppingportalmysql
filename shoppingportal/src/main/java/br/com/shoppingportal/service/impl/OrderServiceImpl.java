@@ -76,14 +76,17 @@ public class OrderServiceImpl implements OrderService {
 			productMake.setAmount(x.getAmount());
 			productMake.setValue(product.getPrice());
 			
-			//BigDecimal sum1 = new BigDecimal(product.getPrice());
+			BigDecimal sum1 = new BigDecimal(x.getAmount());
+			BigDecimal sum2 = new BigDecimal(0).add(product.getPrice());
+			sum1 = sum1.multiply(sum2);
+			sumValues = sumValues.add(sum1);
 			
 			productsSet.add(productMake);
 			
 		}
 		
 		order.setProducts(productsSet);
-		//order.setValue(s);
+		order.setValue(sumValues);
 		
 		repositoryOrder.save(order);
 		repositoryProductOrder.saveAll(productsSet);
