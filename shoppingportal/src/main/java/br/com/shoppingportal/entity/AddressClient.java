@@ -27,11 +27,11 @@ public class AddressClient implements Serializable{
 	
 	private String address;
 	private String numberaddress;
-	private String city;
-	private String stateabbreviation;
-	private String postalcode;
 	private String reference;
 	private String district;
+	private String postalcode;
+	private String city;
+	private String stateabbreviation;
 	
 	@ManyToOne
 	@JoinColumn(name = "idclient")

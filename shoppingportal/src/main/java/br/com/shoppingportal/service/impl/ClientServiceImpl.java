@@ -45,6 +45,12 @@ public class ClientServiceImpl implements ClientService {
 		return repositoryClient.findById(idclient)
 						 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
+	
+	@Override
+	public AddressClient findAddressById(int idaddress) {
+		return repositoryAddress.findById(idaddress)
+						 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	}
 
 	@Override
 	public void delete(int idclient) {
