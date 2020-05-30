@@ -1,5 +1,7 @@
 CREATE DATABASE `shopping_portal` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
+USE shopping_portal;
+
 CREATE TABLE `client` (
   `idclient` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
