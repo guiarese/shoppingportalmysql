@@ -9,7 +9,7 @@ CREATE TABLE `client` (
   `phonenumber` varchar(15) DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
   PRIMARY KEY (`idclient`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `product` (
   `idproduct` int(11) NOT NULL AUTO_INCREMENT,
@@ -17,7 +17,7 @@ CREATE TABLE `product` (
   `amount` int(11) DEFAULT NULL,
   `price` decimal(15,2) DEFAULT NULL,
   PRIMARY KEY (`idproduct`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `address_client` (
   `idaddress` int(11) NOT NULL AUTO_INCREMENT,
@@ -32,7 +32,7 @@ CREATE TABLE `address_client` (
   PRIMARY KEY (`idaddress`),
   KEY `fk_address_client_idx` (`idclient`),
   CONSTRAINT `fk_address_client` FOREIGN KEY (`idclient`) REFERENCES `client` (`idclient`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `orders` (
   `idorder` int(11) NOT NULL AUTO_INCREMENT,
@@ -45,7 +45,7 @@ CREATE TABLE `orders` (
   KEY `FK_ORDER_ADDRESS_idx` (`idaddress`),
   CONSTRAINT `FK_ORDER_ADDRESS` FOREIGN KEY (`idaddress`) REFERENCES `address_client` (`idaddress`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_ORDER_CLIENT` FOREIGN KEY (`idclient`) REFERENCES `client` (`idclient`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `product_order` (
   `idproduct` int(11) NOT NULL,
